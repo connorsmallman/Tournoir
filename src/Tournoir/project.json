@@ -1,8 +1,7 @@
-﻿{
+{
   "webroot": "wwwroot",
   "userSecretsId": "aspnet5-Tournoir-cb6ba587-8c96-4187-8b8b-a870849b34dd",
   "version": "1.0.0-*",
-
   "dependencies": {
     "EntityFramework.SqlServer": "7.0.0-beta5",
     "EntityFramework.Commands": "7.0.0-beta5",
@@ -26,19 +25,18 @@
     "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta5",
     "Microsoft.Framework.Logging": "1.0.0-beta5",
     "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta5"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta5",
+    "kestrel": "1.0.0-beta5"
   },
-
   "commands": {
     "web": "Microsoft.AspNet.Hosting --config hosting.ini",
-    "ef": "EntityFramework.Commands"
+    "ef": "EntityFramework.Commands",
+    "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"
   },
-
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "dnx451": {},
+    "dnxcore50": {}
   },
-
   "exclude": [
     "wwwroot",
     "node_modules",
@@ -52,6 +50,11 @@
     "**.vspscc"
   ],
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]
+    "prepublish": [
+      "npm install",
+      "bower install",
+      "gulp clean",
+      "gulp min"
+    ]
   }
 }
