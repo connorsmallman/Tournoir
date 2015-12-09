@@ -7,7 +7,8 @@
         @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
     </head>
     <body>
-        <h1>Tournoir</h1>
+        @RenderBody()
         <script src="~/dist/tournoir.js" asp-file-version="true"></script>
+        @RenderSection("scripts", required: false)
     </body>
 </html>
