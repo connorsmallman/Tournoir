@@ -8,6 +8,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
+var hbsfy = require('hbsfy');
 var project = require('./project.json');
 
 var paths = {
@@ -37,7 +38,8 @@ gulp.task('bundle', function () {
   var bundler = browserify(paths.js.main, { 
     debug: true 
   })
-  .transform(babelify);
+  .transform(babelify)
+  .transform(hbsfy);
 
   return bundle_js(bundler);
 });
