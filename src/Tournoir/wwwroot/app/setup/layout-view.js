@@ -5,7 +5,7 @@ import template from './layout-template.hbs';
 
 export default LayoutView.extend({
   template,
-  className: 'players-container',
+  className: 'setup-container',
   regions: {
     addPlayer: '.add-player-container',
     players: '.players-container',
