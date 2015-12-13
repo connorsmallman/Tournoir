@@ -14,6 +14,10 @@ export default Router.extend({
     this.listenTo(this, 'before:enter', this.onBeforeEnter);
     this.listenTo(playerChannel, 'add:player', this.addPlayer);
     this.playersCollection = new PlayersCollection();
+    this.listenTo(this.playersCollection, {
+      'update': this.toggleGenerateTournament,
+      'change': this.toggleGenerateTournament,
+    });
   },
 
   onBeforeEnter() {
@@ -33,5 +37,13 @@ export default Router.extend({
 
   addPlayer(playerName) {
     this.playersCollection.add({ playerName: playerName });
+  },
+
+  toggleGenerateTournament() {
+    if (this.playersCollection.length > 1) {
+      this.layout.showGenerateTournament();
+    } else {
+      this.layout.hideGenerateTournament();
+    }
   },
 });

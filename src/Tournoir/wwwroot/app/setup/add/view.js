@@ -27,7 +27,7 @@ export default ItemView.extend({
       playerChannel.trigger('add:player', playerName);
     }
 
-    //reset form 
+    //reset form add focus to input
     this.ui.playerName.val('').focus();
   },
 });
