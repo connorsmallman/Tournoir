@@ -4,6 +4,6 @@ import { Model } from 'orchestra';
 
 export default Model.extend({
   defaults: {
-    playerName: ''
+    playerName: '',
   },
 });

@@ -197,3 +197,4 @@ FakesAssemblies/
 
 # Misc
 src/Tournoir/wwwroot/dist/
+.DS_Store

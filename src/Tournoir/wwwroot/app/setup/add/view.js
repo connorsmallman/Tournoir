@@ -1,6 +1,6 @@
 'use strict';
 
-import { ItemView, Radio } from 'orchestra';
+import { ItemView, Radio, _ } from 'orchestra';
 import template from './template.hbs';
 
 const playerChannel = Radio.channel('player');
@@ -9,14 +9,25 @@ export default ItemView.extend({
   template,
   className: 'add-player-form',
   ui: {
-    'add': '.js-add-player',
     'playerName': '.js-player-name',
   },
   events: {
-    'click @ui.add': 'addPlayer',
+    'keyup @ui.playerName': 'addPlayer',
+  },
+  onRender() {
+    _.defer(() => {
+      this.ui.playerName.focus();
+    });
   },
   addPlayer(e) {
+    if ( e.which != 13 ) return;
     let playerName = this.ui.playerName.val();
-    playerChannel.trigger('add:player', playerName);
+
+    if (playerName !== '') {
+      playerChannel.trigger('add:player', playerName);
+    }
+
+    //reset form 
+    this.ui.playerName.val('').focus();
   },
 });

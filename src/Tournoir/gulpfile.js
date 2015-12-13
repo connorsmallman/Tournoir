@@ -55,3 +55,13 @@ gulp.task('sass', function () {
     .pipe(sass().on('error', gutil.log))
     .pipe(gulp.dest(paths.sass.dest));
 });
+
+gulp.task('sass:watch', function () {
+  gulp.watch(paths.webroot + '/**/*.scss', ['sass']);
+});
+
+gulp.task('js:watch', function () {
+  gulp.watch([paths.webroot + '/**/*.js', paths.webroot + '/**/*.hbs'], ['bundle']);
+});
+
+gulp.task('watch', ['sass:watch','js:watch']);

@@ -1,6 +1,6 @@
 'use strict';
 
-import { ItemView } from 'orchestra';
+import { ItemView, $ } from 'orchestra';
 import template from './template.hbs';
 
 export default ItemView.extend({
@@ -16,5 +16,7 @@ export default ItemView.extend({
 
   removePlayer() {
     this.model.destroy();
+    //Add focus back to input;
+    $('.js-player-name').focus();
   },
 });
