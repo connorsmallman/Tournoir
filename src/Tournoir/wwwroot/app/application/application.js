@@ -1,6 +1,6 @@
 'use strict';
 
-import { Application, history, $ } from 'orchestra';
+import { Application, $ } from 'orchestra';
 import LayoutView from './layout';
 
 export default Application.extend({
@@ -8,7 +8,4 @@ export default Application.extend({
     this.layout = new LayoutView();
     this.layout.render();
   },
-  onStart() {
-    history.start();
-  }
 });
