@@ -1,6 +1,6 @@
 'use strict';
 
-import { LayoutView } from 'orchestra';
+import { LayoutView, history } from 'orchestra';
 import template from './layout-template.hbs';
 
 export default LayoutView.extend({
@@ -9,11 +9,17 @@ export default LayoutView.extend({
   ui: {
     'generate':'.js-generate-tournament',
   },
-  showGenerateTournament() {
+  events: {
+    'click @ui.generate': 'generateTounament',
+  },
+  enableGenerateTournament() {
     this.ui.generate.show();
   },
-  hideGenerateTournament() {
+  disableGenerateTournament() {
     this.ui.generate.hide();
+  },
+  generateTounament() {
+    history.navigate('board', { trigger: true });
   },
   regions: {
     addPlayer: '.add-player-container',

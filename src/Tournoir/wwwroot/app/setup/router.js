@@ -11,8 +11,10 @@ const playerChannel = Radio.channel('player');
 export default Router.extend({
   initialize(options = {}) {
     this.container = options.container;
+
     this.listenTo(this, 'before:enter', this.onBeforeEnter);
     this.listenTo(playerChannel, 'add:player', this.addPlayer);
+
     this.playersCollection = new PlayersCollection();
     this.listenTo(this.playersCollection, {
       'update': this.toggleGenerateTournament,
@@ -41,9 +43,9 @@ export default Router.extend({
 
   toggleGenerateTournament() {
     if (this.playersCollection.length > 1) {
-      this.layout.showGenerateTournament();
+      this.layout.enableGenerateTournament();
     } else {
-      this.layout.hideGenerateTournament();
+      this.layout.disableGenerateTournament();
     }
   },
 });
