@@ -2,6 +2,7 @@
 var rimraf = require('rimraf');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
@@ -16,7 +17,12 @@ var paths = {
 };
 
 paths.js = {
-  main: paths.webroot + 'js/main.js',
+  main: paths.webroot + 'app/main.js',
+  dest: paths.webroot + 'dist',
+};
+
+paths.sass = {
+  main: paths.webroot + 'app/main.scss',
   dest: paths.webroot + 'dist',
 };
 
@@ -43,3 +49,19 @@ gulp.task('bundle', function () {
 
   return bundle_js(bundler);
 });
+
+gulp.task('sass', function () {
+  gulp.src(paths.sass.main)
+    .pipe(sass().on('error', gutil.log))
+    .pipe(gulp.dest(paths.sass.dest));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch(paths.webroot + '/**/*.scss', ['sass']);
+});
+
+gulp.task('js:watch', function () {
+  gulp.watch([paths.webroot + '/**/*.js', paths.webroot + '/**/*.hbs'], ['bundle']);
+});
+
+gulp.task('watch', ['sass:watch','js:watch']);
